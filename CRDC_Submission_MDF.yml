@@ -1,0 +1,366 @@
+Handle: CRDC Search
+Nodes:
+  PrgPrjStdy_Identifier:
+    Props:
+    - component_name
+    - type
+    - component_field_name
+    - component_ID_value
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  aliquot:
+    Props:
+    - no_matched_normal_wgs
+    - amount
+    - analyte_type_id
+    - no_matched_normal_targeted_sequencing
+    - selected_normal_low_pass_wgs
+    - aliquot_quantity
+    - analyte_type
+    - selected_normal_wgs
+    - selected_normal_targeted_sequencing
+    - no_matched_normal_wxs
+    - status
+    - aliquot_id
+    - aliquot_volume
+    - concentration
+    - selected_normal_wxs
+    - no_matched_normal_low_pass_wgs
+    - aiquot_is_Ref
+    - pool
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  analyte:
+    Props:
+    - amount
+    - normal_tumor_genotype_snp_match
+    - a260_a280_ratio
+    - analyte_type
+    - spectrophotometer_method
+    - analyte_id
+    - concentration
+    - ribosomal_rna_28s_16s_ratio
+    - experimental_protocol_type
+    - rna_integrity_number
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  case:
+    Props:
+    - dbGaP_subject_id
+    - case_id
+    - disease_type
+    - status
+    - crdc_case_id
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  demographic:
+    Props:
+    - primary_site
+    - neutered_indicator
+    - age_at_index
+    - weight_uom
+    - weight
+    - days_to_death
+    - taxon
+    - patient_age_at_enrollment
+    - ethnicity
+    - gender_identity
+    - days_to_consent
+    - patient_first_name
+    - age_is_obfuscated
+    - lost_to_followup
+    - breed
+    - days_to_birth
+    - additional_breed_detail
+    - date_of_birth
+    - race
+    - year_of_diagnosis
+    - country_of_residence_at_enrollment
+    - consent_type
+    - sex_at_birth
+    - year_of_birth
+    - year_of_death
+    - age_at_diagnosis
+    - vital_status
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  file:
+    Props:
+    - data_category
+    - experimental_strategies
+    - file_type
+    - file_description
+    - file_id
+    - crdc_file_id
+    - checksum_type
+    - fraction_number
+    - platform
+    - checksum_value
+    - file_size
+    - file_name
+    - file_location
+    - file_status
+    - file_raw_processed
+    - compression_status
+    - file_format
+    - experimental_strategy_and_data_subtypes
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  portion:
+    Props:
+    - creation_datetime
+    - portion_id
+    - is_ffpe
+    - portion_number
+    - weight
+    - portion_weight_uom
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  program:
+    Props:
+    - program_full_description
+    - grant_id
+    - program_id
+    - short_name
+    - program_manager
+    - sponsor_funding_agency
+    - program_short_description
+    - start_date
+    - end_date
+    - program_external_url
+    - name
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  project:
+    Props:
+    - description
+    - short_name
+    - state
+    - project_submitter_id
+    - project_id
+    - releasable
+    - disease_type
+    - name
+    - released
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  slide:
+    Props:
+    - percent_normal_cells
+    - percent_tumor_cells
+    - percent_necrosis
+    - percent_neutrophil_infiltration
+    - percent_monocyte_infiltration
+    - percent_lymphocyte_infiltration
+    - tissue_microarray_coordinates
+    - section_location
+    - percent_stromal_cells
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  specimen:
+    Props:
+    - distributor_reference
+    - sample_tumor_status
+    - intial_weight_uom
+    - passage_count
+    - comment
+    - composition
+    - sample_chronology
+    - pool
+    - method_of_sample_procurement
+    - sample_type_id
+    - longest_dimension
+    - molecular_subtype
+    - biospecimen_anatomic_site
+    - tumor_code
+    - oct_embedded
+    - sample_type
+    - tumor_grade
+    - time_between_clamping_and_freezing
+    - sample_age_at_collection
+    - specific_sample_pathology
+    - biospecimen_laterality
+    - date_of_sample_collection
+    - general_sample_pathology
+    - sample_ordinal
+    - tumor_sample_origin
+    - biosample_accession
+    - freezing_method
+    - initial_weight
+    - necropsy_sample
+    - current_weight_uom
+    - intermediate_dimension
+    - percentage_tumor
+    - crdc_sample_id
+    - time_between_excision_and_freezing
+    - sample_id
+    - diagnosis_pathologically_confirmed
+    - tumor_descriptor
+    - status
+    - shortest_dimension
+    - preservation_method
+    - summarized_sample_type
+    - pathology_report_uuid
+    - current_weight
+    - sample_is_ref
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+  study:
+    Props:
+    - adult_or_childhood_study
+    - clinical_study_type
+    - study_id
+    - accession_id
+    - study_description
+    - name
+    - number_of_participants
+    - study_external_url
+    - experiment_type
+    - short_description
+    - analytical_fraction
+    - study_data_types
+    - bioproject_accession
+    - short_name
+    - clinical_study_id
+    - acl
+    - dates_of_conduct
+    - acquisition_type
+    - dbGap_study_accession
+    - date_of_iacuc_approval
+    - number_of_samples
+    Tags:
+      Assignment: value
+      Category: value
+      Class: value
+      Template: 'Yes'
+    Text: text
+Relationships:
+  derived_from:
+    Ends:
+    - Dst: file
+      Src: file
+    Mul: one_to_many
+    Props: null
+  of_aliquot:
+    Ends:
+    - Dst: aliquot
+      Src: analyte
+    - Dst: aliquot
+      Src: specimen
+    Mul: many_to_many
+    Props: null
+  of_analyte:
+    Ends:
+    - Dst: analyte
+      Src: specimen
+    - Dst: analyte
+      Src: portion
+    Mul: many_to_many
+    Props: null
+  of_case:
+    Ends:
+    - Dst: case
+      Src: specimen
+    Mul: many_to_one
+    Props: null
+  of_file:
+    Ends:
+    - Dst: file
+      Src: specimen
+    - Dst: file
+      Src: case
+    - Dst: file
+      Src: aliquot
+    Mul: one_to_many
+    Props: null
+  of_program:
+    Ends:
+    - Dst: program
+      Src: project
+    Mul: many_to_one
+    Props: null
+  of_project:
+    Ends:
+    - Dst: project
+      Src: study
+    - Dst: project
+      Src: file
+    - Dst: project
+      Src: case
+    Mul: many_to_one
+    Props: null
+  of_slide:
+    Ends:
+    - Dst: slide
+      Src: portion
+    - Dst: slide
+      Src: specimen
+    Mul: many_to_many
+    Props: null
+  of_specimen:
+    Ends:
+    - Dst: specimen
+      Src: portion
+    - Dst: specimen
+      Src: specimen
+    Mul: many_to_many
+    Props: null
+  of_study:
+    Ends:
+    - Dst: study
+      Src: file
+    - Dst: study
+      Src: program
+    Mul: many_to_one
+    Props: null
+  related_to:
+    Ends:
+    - Dst: file
+      Src: file
+    Mul: many_to_one
+    Props: null
+Version: '0.1'

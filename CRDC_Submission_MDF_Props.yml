@@ -1,0 +1,788 @@
+Handle: CRDC Search
+PropDefinitions:
+  a260_a280_ratio:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  accession_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  acl:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  acquisition_type:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  additional_breed_detail:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  adult_or_childhood_study:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  age_at_diagnosis:
+    Desc: The subject's age since birth at the time of diagnosis.
+    Req: 'No'
+    Term:
+    - Code: '10609539'
+      Origin: caDSR
+      Value: Subject Age at Diagnosis Integer
+      Version: '1'
+    Type: number
+  age_at_index:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  age_is_obfuscated:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  aiquot_is_Ref:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  aliquot_id:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  aliquot_quantity:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  aliquot_volume:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  amount:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  analyte_id:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  analyte_type:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  analyte_type_id:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  analytical_fraction:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  bioproject_accession:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  biosample_accession:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  biospecimen_anatomic_site:
+    Desc: The location within the body from which a specimen was originally obtained
+      as captured in the Uberon identifier.
+    Req: 'No'
+    Term:
+    - Code: '12083894'
+      Origin: caDSR
+      Value: Specimen Original Anatomic Site Uberon Identifier
+      Version: '1'
+    Type: enum
+  biospecimen_laterality:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  breed:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  case_id:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  checksum_type:
+    Desc: The method by which the file checksum was calculated.
+    Req: 'No'
+    Term:
+    - Code: '11475057'
+      Origin: caDSR
+      Value: Electronic Data File Checksum Type
+      Version: '1'
+    Type: code
+  checksum_value:
+    Desc: A small-sized block of data derived from a file for the purpose of detecting
+      errors that may have been introduced during file transmission and/or storage
+      and used to verify data integrity.
+    Req: 'No'
+    Term:
+    - Code: '11480133'
+      Origin: caDSR
+      Value: Electronic Data File Checksum Value
+      Version: '1'
+    Type: string
+  clinical_study_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  clinical_study_type:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  comment:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  component_ID_value:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  component_field_name:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  component_name:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  composition:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  compression_status:
+    Desc: The state of data when saved to storage space or during data transmission.
+    Req: 'No'
+    Term:
+    - Code: '11387114'
+      Origin: caDSR
+      Value: Electronic Data File Compression Status
+      Version: '1'
+    Type: code
+  concentration:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  consent_type:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  country_of_residence_at_enrollment:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  crdc_case_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  crdc_file_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  crdc_sample_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  creation_datetime:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  current_weight:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  current_weight_uom:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  data_category:
+    Desc: Text
+    Req: 'No'
+    Type: code
+  date_of_birth:
+    Desc: Text
+    Req: 'No'
+    Type: date
+  date_of_iacuc_approval:
+    Desc: Text
+    Req: 'No'
+    Type: datetime
+  date_of_sample_collection:
+    Desc: Text
+    Req: 'No'
+    Type: datetime
+  dates_of_conduct:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  days_to_birth:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  days_to_consent:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  days_to_death:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  dbGaP_subject_id:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  dbGap_study_accession:
+    Desc: A stable unique alphanumeric identifier assigned to a study and any objects
+      by the database of Genotypes and Phenotypes (dbGaP).
+    Req: 'No'
+    Term:
+    - Code: '11524544'
+      Origin: caDSR
+      Value: Research Activity dbGaP Accession Number Identifier
+      Version: '1'
+    Type: string
+  description:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  diagnosis_pathologically_confirmed:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  disease_type:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  distributor_reference:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  end_date:
+    Desc: Text
+    Req: 'No'
+    Type: date
+  ethnicity:
+    Desc: The text for reporting information about ethnicity based on the Office of
+      Management and Budget (OMB) categories.
+    Req: 'No'
+    Term:
+    - Code: '2192217'
+      Origin: caDSR
+      Value: Ethnic Group Category Text
+      Version: '2'
+    Type: enum
+  experiment_type:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  experimental_protocol_type:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  experimental_strategies:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  experimental_strategy_and_data_subtypes:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  file_description:
+    Desc: A free text field that can be used to document the content and other details
+      about an electronic file that may not be captured elsewhere.
+    Req: 'No'
+    Term:
+    - Code: '11280338'
+      Origin: caDSR
+      Value: Electronic Data File Description Text
+      Version: '1'
+    Type: string
+  file_format:
+    Desc: A defined organization or layout representing and structuring data in a
+      computer file.
+    Req: 'No'
+    Term:
+    - Code: '11416926'
+      Origin: caDSR
+      Value: Electronic Data File Format Type
+      Version: '1'
+    Type: enum
+  file_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  file_location:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  file_name:
+    Desc: The literal label for an electronic data file.
+    Req: 'No'
+    Term:
+    - Code: '11284037'
+      Origin: caDSR
+      Value: Electronic Data File Name
+      Version: '1'
+    Type: string
+  file_raw_processed:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  file_size:
+    Desc: The measure (in bytes) of how much space a data file takes up on a storage
+      medium.
+    Req: 'No'
+    Term:
+    - Code: '11479876'
+      Origin: caDSR
+      Value: Electronic Data File Size Integer
+      Version: '1'
+    Type: int
+  file_status:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  file_type:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  fraction_number:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  freezing_method:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  gender_identity:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  general_sample_pathology:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  grant_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  initial_weight:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  intermediate_dimension:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  intial_weight_uom:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  is_ffpe:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  longest_dimension:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  lost_to_followup:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  method_of_sample_procurement:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  molecular_subtype:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  name:
+    Desc: "The\_narrative title\_used as\_a\_textual\_label\_for\_a\_research data\_\
+      collection."
+    Req: 'No'
+    Term:
+    - Code: '11459810'
+      Origin: caDSR
+      Value: Study Name Text
+      Version: '1'
+    Type: string
+  necropsy_sample:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  neutered_indicator:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  no_matched_normal_low_pass_wgs:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  no_matched_normal_targeted_sequencing:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  no_matched_normal_wgs:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  no_matched_normal_wxs:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  normal_tumor_genotype_snp_match:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  number_of_participants:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  number_of_samples:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  oct_embedded:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  passage_count:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  pathology_report_uuid:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  patient_age_at_enrollment:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  patient_first_name:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  percent_lymphocyte_infiltration:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  percent_monocyte_infiltration:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  percent_necrosis:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  percent_neutrophil_infiltration:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  percent_normal_cells:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  percent_stromal_cells:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  percent_tumor_cells:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  percentage_tumor:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  platform:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  pool:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  portion_id:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  portion_number:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  portion_weight_uom:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  preservation_method:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  primary_site:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  program_external_url:
+    Desc: Text
+    Req: 'No'
+    Type: url
+  program_full_description:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  program_id:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  program_manager:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  program_short_description:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  project_id:
+    Desc: Text
+    Req: 'No'
+    Type: stirng
+  project_submitter_id:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  race:
+    Desc: The text for reporting information about race based on the Office of Management
+      and Budget (OMB) categories.
+    Req: 'No'
+    Term:
+    - Code: '2192199'
+      Origin: caDSR
+      Value: Race Category Text
+      Version: '1'
+    Type: enum
+  releasable:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  released:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  ribosomal_rna_28s_16s_ratio:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  rna_integrity_number:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  sample_age_at_collection:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  sample_chronology:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  sample_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  sample_is_ref:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  sample_ordinal:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  sample_tumor_status:
+    Desc: The category assigned to the cytologic atypia found in cellular molecules,
+      cells, tissues, organs, body fluids, or body excretory products.
+    Req: 'No'
+    Term:
+    - Code: '14688604'
+      Origin: caDSR
+      Value: Specimen Neoplasm Category
+      Version: '1'
+    Type: enum
+  sample_type:
+    Desc: The kind of material that forms the sample as captured in the Ontology for
+      Biobanking (OBIB).
+    Req: 'No'
+    Term:
+    - Code: '11253427'
+      Origin: caDSR
+      Value: Specimen Material OBIB Source
+      Version: '1'
+    Type: enum
+  sample_type_id:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  section_location:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  selected_normal_low_pass_wgs:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  selected_normal_targeted_sequencing:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  selected_normal_wgs:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  selected_normal_wxs:
+    Desc: Text
+    Req: 'No'
+    Type: boolean
+  sex_at_birth:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  short_description:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  short_name:
+    Desc: "The acronym\_or\_abbreviated\_form of\_the\_title\_for a\_research data\_\
+      collection."
+    Req: 'No'
+    Term:
+    - Code: '11459812'
+      Origin: caDSR
+      Value: Study Short Name Text
+      Version: '1'
+    Type: string
+  shortest_dimension:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  specific_sample_pathology:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  spectrophotometer_method:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  sponsor_funding_agency:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  start_date:
+    Desc: Text
+    Req: 'No'
+    Type: date
+  state:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  status:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  study_data_types:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  study_description:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  study_external_url:
+    Desc: Text
+    Req: 'No'
+    Type: url
+  study_id:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  summarized_sample_type:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  taxon:
+    Desc: The unique numerical identifier of a subject's organismal classification
+      as captured in the National Center for Biotechnology Information (NCBI) Taxonomy
+      standard nomenclature and classification repository.
+    Req: 'No'
+    Term:
+    - Code: '10543100'
+      Origin: caDSR
+      Value: Subject Taxonomy NCBI Identifier
+      Version: '2'
+    Type: enum
+  time_between_clamping_and_freezing:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  time_between_excision_and_freezing:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  tissue_microarray_coordinates:
+    Desc: Text
+    Req: 'No'
+    Type: string
+  tumor_code:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  tumor_descriptor:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  tumor_grade:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  tumor_sample_origin:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  type:
+    Desc: Text
+    Req: 'No'
+    Type: code
+  vital_status:
+    Desc: The response to a question that describes a participant's survival status.
+    Req: 'No'
+    Term:
+    - Code: '2847330'
+      Origin: caDSR
+      Value: Participant Vital Status Type
+      Version: '1'
+    Type: enum
+  weight:
+    Desc: Text
+    Req: 'No'
+    Type: int
+  weight_uom:
+    Desc: Text
+    Req: 'No'
+    Type: enum
+  year_of_birth:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  year_of_death:
+    Desc: Text
+    Req: 'No'
+    Type: number
+  year_of_diagnosis:
+    Desc: Text
+    Req: 'No'
+    Type: number
+Version: '1.10'
