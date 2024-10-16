@@ -76,6 +76,12 @@ def processProp(node, prop, propjson):
 
     return{'Node':node, 'Property':prop, 'Description':desc, 'Required':req, 'Code':code, 'Origin':org, 'Version':ver, 'Type':datatype, 'Enum':enum}
                 
+def writeFormattedYaml(filename, df):
+    yamlfact = RUAYAML()
+    yamlfact.indent(mapping=4, sequence=4, offset=2)
+    yamldict = df.to_dict(orient='records')
+    with open(filename, 'wb') as f:
+        yamlfact.dump(yamldict, f)    
 
 
 def main(args):
@@ -105,11 +111,15 @@ def main(args):
     #writeYAML(yamlfile, final_df.to_dict(orient='records'))
 
     #Alternative writing yaml
-    yamlfact = RUAYAML()
-    yamlfact.indent(mapping=4, sequence=4, offset=2)
-    yamldict = final_df.to_dict(orient='records')
-    with open(yamlfile, 'wb') as f:
-        yamlfact.dump(yamldict, f)
+    writeFormattedYaml(yamlfile, final_df)
+
+    #Creating node specific data dictionaryies
+    nodelist = final_df.Node.unique()
+    for node in nodelist:
+        node_df = final_df.loc[final_df['Node'] == node]
+        filename = node+"_"+yamlfile
+        writeFormattedYaml(filename, node_df)
+
 
 
 
