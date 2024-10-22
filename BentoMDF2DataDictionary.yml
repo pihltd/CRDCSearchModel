@@ -1,0 +1,9 @@
+Input:
+  in_dir: /home/pihl/github/CRDCSearchModel/
+  handle: CRDC
+  mdffiles:
+    - CRDC_Submission_MDF_09262024.yml
+    - CRDC_Submission_MDF_Props_09262024.yml
+Output:
+  out_dir: /home/pihl/mockdata/
+  filename: CRDC_Submission_DataDictionary
