@@ -4,27 +4,28 @@ import argparse
 import pandas as pd
 import requests
 from ruamel.yaml import YAML as RUAYAML
+from crdclib import crdclib as crdc
 import yaml
 
-def readYaml(yamlfile):
-    with open(yamlfile) as f:
-        configs = yaml.load(f, Loader=yaml.FullLoader)
-    return configs
+#def readYaml(yamlfile):
+#    with open(yamlfile) as f:
+#        configs = yaml.load(f, Loader=yaml.FullLoader)
+#    return configs
 
-def runcaDSRQuery(cdeid, cdever):
-    headers = {"accept" : "application/json"}
-    url = f"https://cadsrapi.cancer.gov/rad/NCIAPI/1.0/api/DataElement/{cdeid}?version={cdever}"
-    try:
-        cderes = requests.get(url, headers=headers)
-        if cderes.status_code == 200:
-            return cderes.json()
-        else:
-            return "error"
-    except requests.exceptions.HTTPError as e:
-       print(e)
+#def runcaDSRQuery(cdeid, cdever):
+#    headers = {"accept" : "application/json"}
+#    url = f"https://cadsrapi.cancer.gov/rad/NCIAPI/1.0/api/DataElement/{cdeid}?version={cdever}"
+#    try:
+#        cderes = requests.get(url, headers=headers)
+#        if cderes.status_code == 200:
+#            return cderes.json()
+#        else:
+#            return "error"
+#    except requests.exceptions.HTTPError as e:
+#       print(e)
 
 def getPermValues(cdeid, cdeversion):
-    cdejson = runcaDSRQuery(cdeid, cdeversion)
+    cdejson = crdc.getCDERecord(cdeid, cdeversion)
     pvlist = []
     for pventry in cdejson['DataElement']['ValueDomain']['PermissibleValues']:
         pvlist.append(pventry['value'])
@@ -39,7 +40,7 @@ def writeFormattedYaml(filename, df):
 
 def main(args):
 
-    configs = readYaml(args.config)
+    configs = crdc.readYAML(args.config)
 
     temp_files = []
     for file in configs['Input']['mdffiles']:
