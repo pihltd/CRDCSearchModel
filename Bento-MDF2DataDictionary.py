@@ -2,27 +2,9 @@
 from bento_mdf.mdf import MDF
 import argparse
 import pandas as pd
-import requests
 from ruamel.yaml import YAML as RUAYAML
 from crdclib import crdclib as crdc
-import yaml
 
-#def readYaml(yamlfile):
-#    with open(yamlfile) as f:
-#        configs = yaml.load(f, Loader=yaml.FullLoader)
-#    return configs
-
-#def runcaDSRQuery(cdeid, cdever):
-#    headers = {"accept" : "application/json"}
-#    url = f"https://cadsrapi.cancer.gov/rad/NCIAPI/1.0/api/DataElement/{cdeid}?version={cdever}"
-#    try:
-#        cderes = requests.get(url, headers=headers)
-#        if cderes.status_code == 200:
-#            return cderes.json()
-#        else:
-#            return "error"
-#    except requests.exceptions.HTTPError as e:
-#       print(e)
 
 def getPermValues(cdeid, cdeversion):
     cdejson = crdc.getCDERecord(cdeid, cdeversion)
@@ -31,12 +13,14 @@ def getPermValues(cdeid, cdeversion):
         pvlist.append(pventry['value'])
     return pvlist
 
+
 def writeFormattedYaml(filename, df):
     yamlfact = RUAYAML()
     yamlfact.indent(mapping=4, sequence=4, offset=2)
     yamldict = df.to_dict(orient='records')
     with open(filename, 'wb') as f:
         yamlfact.dump(yamldict, f)   
+
 
 def main(args):
 
