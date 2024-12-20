@@ -26,10 +26,11 @@ def main(args):
 
     configs = crdc.readYAML(args.config)
 
-    temp_files = []
-    for file in configs['Input']['mdffiles']:
-        temp_files.append(configs['Input']['in_dir']+file)
+    #temp_files = []
+    #for file in configs['Input']['mdffiles']:
+    #    temp_files.append(configs['Input']['in_dir']+file)
     #According to Nelson, MDF will late a list of files if the unpacking operator is used (*)
+    temp_files = configs['Input']['mdffiles']
     mdf_working = MDF(*temp_files, handle = configs['Input']['handle'])
 
     # First step is to create a dataframe of all properties that have allowable values, etiher as an enum section or as a CDE reference with PVs
@@ -37,8 +38,10 @@ def main(args):
     final_df = pd.DataFrame(columns=columns)
 
     # Turns out for a data dictionary, we only need to create a props entity
-    #nodes = mdf_working.model.nodes
+    nodes = mdf_working.model.nodes
     props = mdf_working.model.props
+    modelversion = mdf_working.version
+    modelname = mdf_working.handle
     #terms = mdf_working.model.terms
 
 
@@ -105,11 +108,26 @@ def main(args):
         yamlfilename = outfile+"_"+node+".yml"
         writeFormattedYaml(yamlfilename, node_df)
         node_df.to_csv(csvfilename, sep='\t', index=False)
-     
+        
+    #Create submission sheets if requestsed
+    if args.submissionfiles:
+        loadsheets = {}
+        for node in nodelist:
+            props = nodes[node].props
+            loadsheets[node] = pd.DataFrame(columns=list(props.keys()))
+        for node, df in loadsheets.items():
+            #add the type column
+            df.insert(0, 'type', node)
+            #TODO: Add linking columns
+            filename = configs['Output']['out_dir']+modelname+"Data_Loading_Template_"+node+"_v"+modelversion+".csv"
+            df.to_csv(filename, sep="\t", index=False)
+        
+         
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", "--config", required=True, help="location and name of configuration file")
+    parser.add_argument("-s", "--submissionfiles", action='store_true', help="Create empty submission files")
 
     args = parser.parse_args()
 

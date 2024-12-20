@@ -1,0 +1,9 @@
+Input:
+  in_dir: 'C:\Users\pihltd\Documents\modeltest\CDS502\'
+  handle: CDS
+  mdffiles:
+    - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.2/model-desc/cds-model.yml
+    - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.2/model-desc/cds-model-props.yml
+Output:
+  out_dir: 'C:\Users\pihltd\Documents\modeltest\CDS502\'
+  filename: CDS_5.0.2_DataDictionary
