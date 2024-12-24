@@ -2,8 +2,9 @@ Input:
   in_dir: 'C:\Users\pihltd\Documents\modeltest\CDS502\'
   handle: CDS
   mdffiles:
-    - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.2/model-desc/cds-model.yml
-    - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.2/model-desc/cds-model-props.yml
+    - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.3/model-desc/cds-model.yml
+    - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.3/model-desc/cds-model-props.yml
 Output:
-  out_dir: 'C:\Users\pihltd\Documents\modeltest\CDS502\'
-  filename: CDS_5.0.2_DataDictionary
+  #out_dir: 'C:\Users\pihltd\Documents\modeltest\CDS503\'
+  out_dir: 'C:\Users\hangd\OneDrive\Documents\modeltest\CDS503\'
+  filename: CDS_5.0.3_DataDictionary

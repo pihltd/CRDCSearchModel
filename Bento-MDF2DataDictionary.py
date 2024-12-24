@@ -14,6 +14,20 @@ def getPermValues(cdeid, cdeversion):
     return pvlist
 
 
+
+def getKeyFields(node, mdf):
+    keylist = []
+    edgelist = mdf.model.edges_by_src(mdf.model.nodes[node])
+    for edge in edgelist:
+        destnode = edge.dst.get_attr_dict()['handle']
+        #Filter out this node, no need to self reference
+        if destnode != node:
+            destprops = mdf.model.nodes[destnode].props
+            for destkey, destprop in destprops.items():
+                if destprop.get_attr_dict()['is_key'] == 'True':
+                    keylist.append(destnode+"."+destprop.get_attr_dict()['handle'])
+    return keylist
+
 def writeFormattedYaml(filename, df):
     yamlfact = RUAYAML()
     yamlfact.indent(mapping=4, sequence=4, offset=2)
@@ -26,10 +40,6 @@ def main(args):
 
     configs = crdc.readYAML(args.config)
 
-    #temp_files = []
-    #for file in configs['Input']['mdffiles']:
-    #    temp_files.append(configs['Input']['in_dir']+file)
-    #According to Nelson, MDF will late a list of files if the unpacking operator is used (*)
     temp_files = configs['Input']['mdffiles']
     mdf_working = MDF(*temp_files, handle = configs['Input']['handle'])
 
@@ -114,11 +124,27 @@ def main(args):
         loadsheets = {}
         for node in nodelist:
             props = nodes[node].props
-            loadsheets[node] = pd.DataFrame(columns=list(props.keys()))
+            proplist = list(props.keys())
+
+            # Get rid of anything tagged as Template No
+            for propname, prop in props.items():
+                if 'Template' in prop.tags:
+                    if str(prop.tags['Template'].get_attr_dict()['value']) == 'No':
+                        proplist.remove(propname)
+            loadsheets[node] = pd.DataFrame(columns=proplist)
+
+        #Finishing touches
         for node, df in loadsheets.items():
             #add the type column
             df.insert(0, 'type', node)
-            #TODO: Add linking columns
+            df.loc[len(df.index), 'type'] = node
+
+            #Add the relationship fields
+            keyfields = getKeyFields(node, mdf_working)
+            for field in keyfields:
+                df[field] = None
+
+            #Write out the load sheet
             filename = configs['Output']['out_dir']+modelname+"Data_Loading_Template_"+node+"_v"+modelversion+".csv"
             df.to_csv(filename, sep="\t", index=False)
         
