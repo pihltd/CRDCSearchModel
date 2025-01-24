@@ -10,7 +10,15 @@ def getPermValues(cdeid, cdeversion):
     cdejson = crdc.getCDERecord(cdeid, cdeversion)
     pvlist = []
     for pventry in cdejson['DataElement']['ValueDomain']['PermissibleValues']:
-        pvlist.append(pventry['value'])
+        #Within each pventry, there's a list at pventry['Concepts], and conceptCode has the NCIt code
+        temp = []
+        for concept in pventry['Concepts']:
+            conceptcode = concept['conceptCode']
+            conceptsource = concept['evsSource']
+            temp.append({conceptcode:conceptsource})
+            #pvvalue = pventry['value']
+        pvlist.append({pventry['value']:temp})
+        #pvlist.append(pventry['value'])
     return pvlist
 
 
@@ -44,7 +52,7 @@ def main(args):
     mdf_working = MDF(*temp_files, handle = configs['Input']['handle'])
 
     # First step is to create a dataframe of all properties that have allowable values, etiher as an enum section or as a CDE reference with PVs
-    columns = ['Node', 'Property', 'Description', 'Required','Code','Origin','Version' ,'DataType', 'Enum']
+    columns = ['Node', 'Property', 'Description', 'Required','CDE_Code','CDE_Origin','CDE_Version' ,'DataType', 'Enum', 'Enum_Code', 'Enum_Origin']
     final_df = pd.DataFrame(columns=columns)
 
     # Turns out for a data dictionary, we only need to create a props entity
@@ -94,9 +102,14 @@ def main(args):
                 else:
                     version = '1'
                 origin = workingterm['origin_name']
+                #enum is a list of dictionaries
                 enum = getPermValues(code, version)
+                for entries in enum:
+                    #entires is PV as key, list of ncit codes as value
+                    for  in entries:
+                        for 
 
-        temp = {'Node' : node, 'Property': propname, 'Description':desc, 'Required':req,'Code':code,'Origin':origin,'Version':version ,'DataType':datatype, 'Enum':enum}
+        temp = {'Node' : node, 'Property': propname, 'Description':desc, 'Required':req,'CDE_Code':code,'CDE_Origin':origin,'CDE_Version':version ,'DataType':datatype, 'Enum':enum, 'Enum_Code':, 'Enum_Origin':}
         final_df.loc[len(final_df.index)] = temp
 
 

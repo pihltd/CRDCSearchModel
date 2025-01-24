@@ -30,13 +30,21 @@ def runQuery(cdeid, cdever):
 def getPermValues(cdeid, cdeversion):
     #print(f"CDEID:\t{cdeid}\tVersion:\t{cdeversion}")
     #Sometimes the input Excel identifies URLs as the version
+    # TODO: Pull the NCIT codes for the elements.  Which means I need to return a differnt list
     if 'https' in cdeversion:
         temp = cdeversion.split('=')
         cdeversion = temp[-1]
     cdejson = runQuery(cdeid, cdeversion)
     pvlist = []
     for pventry in cdejson['DataElement']['ValueDomain']['PermissibleValues']:
-        pvlist.append(pventry['value'])
+        #Within each pventry, there's a list at pventry['Concepts], and conceptCode has the NCIt code
+        temp = []
+        for concept in pventry['Concepts']:
+            conceptcode = concept['conceptCode']
+            conceptsource = concept['evsSource']
+            temp.append({conceptcode:conceptsource})
+            #pvvalue = pventry['value']
+        pvlist.append({pventry['value']:temp})
     return pvlist
 
 def processProp(node, prop, propjson):
