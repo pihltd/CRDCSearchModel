@@ -4,15 +4,18 @@ import argparse
 import pandas as pd
 from ruamel.yaml import YAML as RUAYAML
 from crdclib import crdclib as crdc
+import yaml
 
 
 def getPermValues(cdeid, cdeversion):
+    # Redo this so what's returned is a list of dictionary.  permissible_value:[{concept_code:source}]
     cdejson = crdc.getCDERecord(cdeid, cdeversion)
     pvlist = []
     for pventry in cdejson['DataElement']['ValueDomain']['PermissibleValues']:
         #Within each pventry, there's a list at pventry['Concepts], and conceptCode has the NCIt code
         temp = []
-        for concept in pventry['Concepts']:
+        #print(f"ID: {cdeid}\tVersion: {cdeversion}")
+        for concept in pventry['ValueMeaning']['Concepts']:
             conceptcode = concept['conceptCode']
             conceptsource = concept['evsSource']
             temp.append({conceptcode:conceptsource})
@@ -38,10 +41,21 @@ def getKeyFields(node, mdf):
 
 def writeFormattedYaml(filename, df):
     yamlfact = RUAYAML()
-    yamlfact.indent(mapping=4, sequence=4, offset=2)
-    yamldict = df.to_dict(orient='records')
+    #yamlfact.indent(mapping=4, sequence=4, offset=2)
+    #yamldict = df.to_dict(orient='records')
+    yamldict = {}
+    for index, row in df.iterrows():
+        if row['Node'] in yamldict:
+            temp = yamldict[row['Node']]
+            temp.append({'Property': row['Property'], 'Description': row['Description'], 'Required': row['Required'],'CDE_Code': row['CDE_Code'], 'CDE_Version': row['CDE_Version'], 'DataType': row['DataType'], 'Enum_Data': row['Enum_Data']})
+            yamldict[row['Node']] = temp
+        else:
+            yamldict[row['Node']] = [{'Property': row['Property'], 'Description': row['Description'], 'Required': row['Required'],'CDE_Code': row['CDE_Code'], 'CDE_Version': row['CDE_Version'], 'DataType': row['DataType'], 'Enum_Data': row['Enum_Data']}]
+            
     with open(filename, 'wb') as f:
-        yamlfact.dump(yamldict, f)   
+        yamlfact.dump(yamldict, f)  
+        
+ 
 
 
 def main(args):
@@ -52,7 +66,9 @@ def main(args):
     mdf_working = MDF(*temp_files, handle = configs['Input']['handle'])
 
     # First step is to create a dataframe of all properties that have allowable values, etiher as an enum section or as a CDE reference with PVs
-    columns = ['Node', 'Property', 'Description', 'Required','CDE_Code','CDE_Origin','CDE_Version' ,'DataType', 'Enum', 'Enum_Code', 'Enum_Origin']
+    #columns = ['Node', 'Property', 'Description', 'Required','CDE_Code','CDE_Origin','CDE_Version' ,'DataType', 'Enum', 'Enum_Code', 'Enum_Origin']
+    columns = ['Node', 'Property', 'Description', 'Required','CDE_Code','CDE_Origin','CDE_Version' ,'DataType', 'Enum_Data']
+
     final_df = pd.DataFrame(columns=columns)
 
     # Turns out for a data dictionary, we only need to create a props entity
@@ -104,13 +120,20 @@ def main(args):
                 origin = workingterm['origin_name']
                 #enum is a list of dictionaries
                 enum = getPermValues(code, version)
-                for entries in enum:
+                #for entries in enum:
+                    #print(entries)
                     #entires is PV as key, list of ncit codes as value
-                    for  in entries:
-                        for 
-
-        temp = {'Node' : node, 'Property': propname, 'Description':desc, 'Required':req,'CDE_Code':code,'CDE_Origin':origin,'CDE_Version':version ,'DataType':datatype, 'Enum':enum, 'Enum_Code':, 'Enum_Origin':}
-        final_df.loc[len(final_df.index)] = temp
+                    # {perm_value:[{concept code: source}]}
+                    #for pv, ccentires in entries.items():
+                temp = {'Node' : node, 'Property': propname, 'Description':desc, 'Required':req,'CDE_Code':code,'CDE_Origin':origin,
+                                        'CDE_Version':version ,'DataType':datatype, 'Enum_Data':enum}
+                final_df.loc[len(final_df.index)] = temp
+                    #    for ccentry in ccentires:
+                    #        #print(ccentry)
+                    #        for concept_code, concept_source in ccentry.items():
+                    #            temp = {'Node' : node, 'Property': propname, 'Description':desc, 'Required':req,'CDE_Code':code,'CDE_Origin':origin,
+                    #                    'CDE_Version':version ,'DataType':datatype, 'Enum':pv, 'Enum_Code':concept_code, 'Enum_Origin': concept_source}
+                    #            final_df.loc[len(final_df.index)] = temp
 
 
     outfile = configs['Output']['out_dir']+configs['Output']['filename']
@@ -122,6 +145,9 @@ def main(args):
     #Write a yaml file
     yamlfile = outfile+".yml"
     writeFormattedYaml(yamlfile, final_df)
+    #crdc.writeYAML(yamlfile, final_df.to_json(orient='records'))
+    #with open(yamlfile, "w") as f:
+    #        yaml.dump(final_df.to_json(orient='records'), f, default_flow_style=False)
 
     #Write node specific files
     nodelist = final_df.Node.unique()
@@ -130,6 +156,9 @@ def main(args):
         csvfilename = outfile+"_"+node+".tsv"
         yamlfilename = outfile+"_"+node+".yml"
         writeFormattedYaml(yamlfilename, node_df)
+        #crdc.writeYAML(yamlfile, node_df.to_json(orient='records'))
+        #with open(yamlfile, "w") as f:
+        #    yaml.dump(node_df.to_json(orient='records'), f, default_flow_style=False)
         node_df.to_csv(csvfilename, sep='\t', index=False)
         
     #Create submission sheets if requestsed

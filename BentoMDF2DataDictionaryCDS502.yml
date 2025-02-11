@@ -5,6 +5,7 @@ Input:
     - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.4/model-desc/cds-model.yml
     - https://raw.githubusercontent.com/CBIIT/cds-model/refs/heads/5.0.4/model-desc/cds-model-props.yml
 Output:
-  #out_dir: 'C:\Users\pihltd\Documents\modeltest\CDS503\'
-  out_dir: 'C:\Users\hangd\OneDrive\Documents\modeltest\CDS504\'
-  filename: CDS_5.0.4_DataDictionary
+  out_dir: 'C:\Users\pihltd\Documents\modeltest\CDS504\'
+  #out_dir: 'C:\Users\hangd\OneDrive\Documents\modeltest\CDS504\'
+  #filename: TEST_CDS_5.0.4_DataDictionary
+  filename: 'Model_caDSR_Comparison.csv'
